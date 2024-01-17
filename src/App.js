@@ -1,21 +1,29 @@
 import {Component} from 'react'
 import FileContext from './context/FileContext'
-
+import Home from './components/Home'
 import './App.css'
 import Login from './components/Login'
 
 // Replace your code here
 class App extends Component {
-  state = {siteTheme: 'Dark'}
+  state = {siteTheme: 'Light', ChangeTheme: true}
 
-  changeTheme = () => 1
+  changeTheme = () => {
+    const {ChangeTheme} = this.state
+    this.setState(prevState => ({ChangeTheme: !prevState.ChangeTheme}))
+    if (ChangeTheme) {
+      this.setState({siteTheme: 'Light'})
+    } else {
+      this.setState({siteTheme: 'Dark'})
+    }
+  }
 
   render() {
-    const {siteTheme} = this.state
+    const {siteTheme, ChangeTheme} = this.state
 
     return (
       <FileContext.Provider value={{siteTheme, changeTheme: this.changeTheme}}>
-        <Login />
+        <Home />
       </FileContext.Provider>
     )
   }
