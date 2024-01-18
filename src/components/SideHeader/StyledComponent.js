@@ -18,7 +18,7 @@ export const HeaderButton = styled.nav`
 `
 
 export const HeaderContainer = styled.div`
-  width: 20%;
+  width: 19vw;
   height: 100vh;
   display: flex;
   flex-direction: column;
