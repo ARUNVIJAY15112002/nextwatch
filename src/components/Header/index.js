@@ -1,4 +1,5 @@
 import {Component} from 'react'
+
 import FileContext from '../../context/FileContext'
 import {
   Navbar,
@@ -25,10 +26,9 @@ class Header extends Component {
           return (
             <Navbar isLight={isLight}>
               <NavImage src={imageUrl} />
-
               <NavRightContainer>
                 <li>
-                  <button onClick={changeThemeAll}>changemode</button>
+                  <button onClick={changeThemeAll}>click</button>
                 </li>
                 <li>
                   {' '}

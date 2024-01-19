@@ -1,29 +1,29 @@
 import {Component} from 'react'
-import {FaFire} from 'react-icons/fa'
+import {SiYoutubegaming} from 'react-icons/si'
 import Cookies from 'js-cookie'
-import FileContext from '../../context/FileContext'
-import TrendingCards from '../TrendingCards'
+import GamingCard from '../GamingCard'
+import Header from '../Header'
+import SideHeader from '../SideHeader'
 import {
   BgContainer,
   ListContainer,
+  Card,
   CardGaming,
   Logo,
   H1,
-  Card,
 } from './StyledComponents'
-import Header from '../Header'
-import SideHeader from '../SideHeader'
+import FileContext from '../../context/FileContext'
 
-class Trending extends Component {
-  state = {trendingList: []}
+class Gaming extends Component {
+  state = {videoList: []}
 
   componentDidMount() {
-    this.detData()
+    this.getGamingVideos()
   }
 
-  detData = async () => {
+  getGamingVideos = async () => {
     const jwtToken = Cookies.get('jwt_token')
-    const apiUrl = 'https://apis.ccbp.in/videos/trending'
+    const apiUrl = 'https://apis.ccbp.in/videos/gaming'
     const options = {
       headers: {
         Authorization: `Bearer ${jwtToken}`,
@@ -33,26 +33,20 @@ class Trending extends Component {
     const response = await fetch(apiUrl, options)
     if (response.ok) {
       const fetchedData = await response.json()
-      const formatedData = fetchedData.videos.map(x => ({
+      const data = fetchedData.videos.map(x => ({
         id: x.id,
         title: x.title,
         thumbnailUrl: x.thumbnail_url,
-        channel: {
-          name: x.channel.name,
-          profileImageUrl: x.channel.profile_image_url,
-        },
         viewCount: x.view_count,
-        publishedAt: x.published_at,
       }))
-      this.setState({trendingList: formatedData})
+      this.setState({videoList: data})
     }
   }
 
-  renderTrendingPage = () => {
-    const {trendingList} = this.state
-
+  renderGamingCard = () => {
+    const {videoList} = this.state
     return (
-      <FileContext.Consumer>
+      <FileContext>
         {value => {
           const {siteTheme} = value
           const isLight = siteTheme === 'Light' ? 'true' : 'false'
@@ -60,20 +54,20 @@ class Trending extends Component {
           return (
             <>
               <Header />
-
               <BgContainer isLight={isLight}>
                 <SideHeader />
-                <Card>
+                <Card isLight={isLight}>
                   <CardGaming isLight={isLight}>
                     <Logo isLight={isLight}>
-                      <FaFire />
+                      <SiYoutubegaming />
                     </Logo>
 
                     <H1 isLight={isLight}>Gaming</H1>
                   </CardGaming>
+
                   <ListContainer>
-                    {trendingList.map(x => (
-                      <TrendingCards x={x} key={x.id} />
+                    {videoList.map(x => (
+                      <GamingCard x={x} key={x.id} />
                     ))}
                   </ListContainer>
                 </Card>
@@ -81,13 +75,13 @@ class Trending extends Component {
             </>
           )
         }}
-      </FileContext.Consumer>
+      </FileContext>
     )
   }
 
   render() {
-    return this.renderTrendingPage()
+    return this.renderGamingCard()
   }
 }
 
-export default Trending
+export default Gaming

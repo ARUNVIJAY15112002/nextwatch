@@ -13,6 +13,8 @@ import {
   ContactUsHead,
   Card,
   ListItem,
+  ListPara,
+  FootPara,
 } from './StyledComponent'
 
 const navitems = [
@@ -49,8 +51,8 @@ class SideHeader extends Component {
           const getItems = x => (
             <li>
               <Card>
-                <ListItem>{x.image}</ListItem>
-                <li>{x.text}</li>
+                <ListItem isLight={isLight}>{x.image}</ListItem>
+                <ListPara isLight={isLight}>{x.text}</ListPara>
               </Card>
             </li>
           )
@@ -59,7 +61,7 @@ class SideHeader extends Component {
             <HeaderContainer isLight={isLight}>
               <ListContainer>{navitems.map(x => getItems(x))}</ListContainer>
               <FootContainer>
-                <ContactUsHead>CONTACT US</ContactUsHead>
+                <ContactUsHead isLight={isLight}>CONTACT US</ContactUsHead>
                 <ListContainer2>
                   <li>
                     <ContactImage
@@ -80,7 +82,9 @@ class SideHeader extends Component {
                     />
                   </li>
                 </ListContainer2>
-                <p>Enjoy! Now to see your channels and recommendations!</p>
+                <FootPara isLight={isLight}>
+                  Enjoy! Now to see your channels and recommendations!
+                </FootPara>
               </FootContainer>
             </HeaderContainer>
           )

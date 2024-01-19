@@ -3,19 +3,24 @@ import styled from 'styled-components'
 export const BgContainer = styled.div`
   display: flex;
   flex-direction: row;
-  background-color: ${props =>
-    props.isLight === 'true' ? '#f8fafc' : '#000000'};
-
   min-height: 100vh;
   width: 100vw;
+  background-color: ${props =>
+    props.isLight === 'true' ? '#f8fafc' : '#000000'};
+`
+export const ListContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  list-style: none;
+  width: 80vw;
+  margin-left: 15px;
+`
+export const Card = styled.div`
+  display: flex;
+  flex-direction: column;
 `
 
-export const ListContainer = styled.ul`
-  list-style: none;
-  display:flex:
-  flex-direction:column;
-  width:80vw;
-`
 export const CardGaming = styled.div`
   display: flex;
   flex-direction: row;
@@ -45,9 +50,4 @@ export const Logo = styled.div`
 export const H1 = styled.h1`
   color: ${props => (props.isLight === 'true' ? '#475569' : '#d7dfe9')};
   margin-top: 25px;
-`
-
-export const Card = styled.div`
-  display: flex;
-  flex-direction: column;
 `

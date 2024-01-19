@@ -29,43 +29,63 @@ export const HeaderContainer = styled.div`
 
 export const ListContainer = styled.ul`
   list-style: none;
-  background-color: pink;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   padding: 10px;
+  margin-left: -10px;
 `
 export const ListContainer2 = styled.ul`
   list-style: none;
   display: flex;
   flex-direction: row;
-  background-color: blue;
   justify-content: flex-start;
+  margin-left: -44px;
 `
 
 export const ContactImage = styled.img`
   width: 30px;
   height: 30px;
-  margin-left: 10px;
+  margin-left: 17px;
 `
 
 export const FootContainer = styled.div`
   margin-bottom: 20px;
+  margin-left: 1px;
 `
 
 export const ContactUsHead = styled.h1`
-  color: '#94a3b8';
-  font-size: 20px;
+  color: ${props => (props.isLight === 'true' ? '#475569' : '#f1f1f1')};
+  font-size: 17px;
+  margin-left: 14px;
 `
 
-export const Card = styled.ul`
+export const ListPara = styled.p`
+  color: ${props => (props.isLight === 'true' ? '#475569' : '#d7dfe9')};
+  font-size: 14px;
+  margin-top: 1px;
+`
+export const FootPara = styled.p`
+  color: ${props => (props.isLight === 'true' ? '#475569' : '#d7dfe9')};
+  font-size: 16px;
+  margin-top: 1px;
+  width: 200px;
+  margin-left: 14px;
+`
+
+export const Card = styled.button`
   font-size: 18px;
   display: flex;
   flex-direction: row;
   list-style: none;
-  margin-bottom: 10px;
+  margin-bottom: 7px;
+  background-color: transparent;
+  border-width: 0px;
+  cursor: pointer;
+  margin-left: 13px;
 `
 
-export const ListItem = styled.li`
+export const ListItem = styled.div`
   margin-right: 20px;
+  color: ${props => (props.isLight === 'true' ? '#475569' : '#d7dfe9')};
 `

@@ -1,13 +1,23 @@
 import {Component} from 'react'
+import {IoIosClose} from 'react-icons/io'
 import Cookies from 'js-cookie'
 import Header from '../Header'
 import SideHeader from '../SideHeader'
-import {BgContainer, ListContainer} from './StyledComponents'
+import {
+  BgContainer,
+  ListContainer,
+  Card,
+  PremiumCard,
+  PremiumCardItems,
+  PrImage,
+  Prbtn,
+  PremiumClosebtn,
+} from './StyledComponents'
 import FileContext from '../../context/FileContext'
 import HomeCards from '../HomeCards'
 
 class Home extends Component {
-  state = {videosList: []}
+  state = {videosList: [], showPremiumCard: true}
 
   componentDidMount() {
     this.getVideos()
@@ -42,22 +52,44 @@ class Home extends Component {
     }
   }
 
+  closePreimium = () => {
+    this.setState({showPremiumCard: false})
+  }
+
+  renderPremiumCard = () => (
+    <PremiumCard>
+      <PremiumCardItems>
+        <PrImage src="https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png" />
+        <p>Buy Nxt Watch Premium prepaid plans with UPI</p>
+        <Prbtn>GET IT NOW</Prbtn>
+      </PremiumCardItems>
+      <PremiumClosebtn onClick={this.closePreimium}>
+        {' '}
+        <IoIosClose />
+      </PremiumClosebtn>
+    </PremiumCard>
+  )
+
   renderHome = () => (
     <FileContext.Consumer>
       {value => {
         const {siteTheme} = value
-        const {videosList} = this.state
+        const {videosList, showPremiumCard} = this.state
         const isLight = siteTheme === 'Light' ? 'true' : 'false'
         return (
           <>
             <Header />
             <BgContainer isLight={isLight}>
               <SideHeader />
-              <ListContainer>
-                {videosList.map(x => (
-                  <HomeCards x={x} key={x.id} />
-                ))}
-              </ListContainer>
+              <Card>
+                {showPremiumCard === true && this.renderPremiumCard()}
+
+                <ListContainer>
+                  {videosList.map(x => (
+                    <HomeCards x={x} key={x.id} />
+                  ))}
+                </ListContainer>
+              </Card>
             </BgContainer>
           </>
         )

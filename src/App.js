@@ -2,6 +2,7 @@ import {Component} from 'react'
 import FileContext from './context/FileContext'
 import Home from './components/Home'
 import Trending from './components/Trending'
+import Gaming from './components/Gaming'
 import './App.css'
 import Login from './components/Login'
 
