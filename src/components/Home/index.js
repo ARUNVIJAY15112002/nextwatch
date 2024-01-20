@@ -37,7 +37,6 @@ const apiStatusConstants = {
 class Home extends Component {
   state = {
     videosList: [],
-    showPremiumCard: true,
     setSearch: '',
     apiStatus: apiStatusConstants.intial,
   }
@@ -78,22 +77,31 @@ class Home extends Component {
     }
   }
 
-  closePreimium = () => {
-    this.setState({showPremiumCard: false})
-  }
-
   renderPremiumCard = () => (
-    <PremiumCard>
-      <PremiumCardItems>
-        <PrImage src="https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png" />
-        <p>Buy Nxt Watch Premium prepaid plans with UPI</p>
-        <Prbtn>GET IT NOW</Prbtn>
-      </PremiumCardItems>
-      <PremiumClosebtn onClick={this.closePreimium}>
-        {' '}
-        <IoIosClose />
-      </PremiumClosebtn>
-    </PremiumCard>
+    <FileContext.Consumer>
+      {value => {
+        const {showPremiumCard, closePremiumCard} = value
+
+        const closePreimium = () => {
+          closePremiumCard()
+          console.log('ok')
+        }
+
+        return (
+          <PremiumCard>
+            <PremiumCardItems>
+              <PrImage src="https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png" />
+              <p>Buy Nxt Watch Premium prepaid plans with UPI</p>
+              <Prbtn>GET IT NOW</Prbtn>
+            </PremiumCardItems>
+            <PremiumClosebtn onClick={() => closePreimium()}>
+              {' '}
+              <IoIosClose />
+            </PremiumClosebtn>
+          </PremiumCard>
+        )
+      }}
+    </FileContext.Consumer>
   )
 
   FilterInputs = e => {
@@ -103,8 +111,8 @@ class Home extends Component {
   renderHome = () => (
     <FileContext.Consumer>
       {value => {
-        const {siteTheme} = value
-        const {videosList, showPremiumCard} = this.state
+        const {siteTheme, showPremiumCard} = value
+        const {videosList} = this.state
         const isLight = siteTheme === 'Light' ? 'true' : 'false'
         return (
           <>
@@ -141,8 +149,8 @@ class Home extends Component {
   renderLoader = () => (
     <FileContext.Consumer>
       {value => {
-        const {siteTheme} = value
-        const {videosList, showPremiumCard} = this.state
+        const {siteTheme, showPremiumCard} = value
+        const {videosList} = this.state
         const isLight = siteTheme === 'Light' ? 'true' : 'false'
         return (
           <>
@@ -181,8 +189,8 @@ class Home extends Component {
   renderFailure = () => (
     <FileContext.Consumer>
       {value => {
-        const {siteTheme} = value
-        const {videosList, showPremiumCard} = this.state
+        const {siteTheme, showPremiumCard} = value
+        const {videosList} = this.state
         const isLight = siteTheme === 'Light' ? 'true' : 'false'
         const imgUrl =
           siteTheme === 'true'

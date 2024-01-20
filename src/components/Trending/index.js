@@ -69,7 +69,7 @@ class Trending extends Component {
                       <FaFire />
                     </Logo>
 
-                    <H1 isLight={isLight}>Gaming</H1>
+                    <H1 isLight={isLight}>Trending</H1>
                   </CardGaming>
                   <ListContainer>
                     {trendingList.map(x => (

@@ -1,4 +1,11 @@
 import {Component} from 'react'
+import {
+  BsMoon,
+  BiSun,
+  MdClose,
+  GiHamburgerMenu,
+  FiLogOut,
+} from 'react-icons/all'
 
 import FileContext from '../../context/FileContext'
 import {
@@ -7,6 +14,7 @@ import {
   ProfileImage,
   NavImage,
   NavRightContainer,
+  ModeButton,
 } from './styledComponents'
 
 class Header extends Component {
@@ -23,12 +31,15 @@ class Header extends Component {
           const changeThemeAll = () => {
             changeTheme()
           }
+          const mode = siteTheme === 'Light' ? <BsMoon /> : <BiSun />
           return (
             <Navbar isLight={isLight}>
               <NavImage src={imageUrl} />
               <NavRightContainer>
                 <li>
-                  <button onClick={changeThemeAll}>click</button>
+                  <ModeButton onClick={changeThemeAll} isLight={isLight}>
+                    {mode}
+                  </ModeButton>
                 </li>
                 <li>
                   {' '}

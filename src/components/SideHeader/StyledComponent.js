@@ -85,12 +85,11 @@ export const Card = styled.div`
   background-color: ${props => props.Cardbg};
   border-width: 0px;
   cursor: pointer;
-  width: 200px;
-  margin-left: 13px;
+  width: 233px;
   padding: 5px;
 `
 
 export const ListItem = styled.div`
   margin-right: 20px;
-  color: ${props => (props.isLight === 'true' ? '#475569' : '#d7dfe9')};
+  color: ${props => props.iconTheme};
 `

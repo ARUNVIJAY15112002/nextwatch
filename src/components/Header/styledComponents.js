@@ -21,6 +21,15 @@ export const LogoutBtn = styled.button`
   width:80px;
 
 `
+export const ModeButton = styled.button`
+  color: ${props => (props.isLight === 'true' ? 'black' : '#ffffff')};
+  background-color: transparent;
+  border-width: 0px;
+  font-size: 20px;
+  margin-top: 5px;
+  cursor: pointer;
+`
+
 export const ProfileImage = styled.img`
   width: 30px;
   height: 30px;
