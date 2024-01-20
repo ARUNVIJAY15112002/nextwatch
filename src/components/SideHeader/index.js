@@ -1,6 +1,7 @@
 import {IoMdHome} from 'react-icons/io'
 import {FaFire} from 'react-icons/fa'
 import {SiYoutubegaming} from 'react-icons/si'
+import {CgPlayListAdd} from 'react-icons/cg'
 import {Component} from 'react'
 import FileContext from '../../context/FileContext'
 import {
@@ -36,11 +37,17 @@ const navitems = [
   {
     id: 4,
     text: 'Saved videos',
-    image: <IoMdHome />,
+    image: <CgPlayListAdd />,
   },
 ]
 
 class SideHeader extends Component {
+  state = {activeStatus: 1}
+
+  getStatus = id => {
+    this.setState({activeStatus: id})
+  }
+
   render() {
     return (
       <FileContext.Consumer>
@@ -48,15 +55,24 @@ class SideHeader extends Component {
           const {siteTheme, changeTheme} = value
           const isLight = siteTheme === 'Light' ? 'true' : 'false'
 
-          const getItems = x => (
-            <li>
-              <Card>
-                <ListItem isLight={isLight}>{x.image}</ListItem>
-                <ListPara isLight={isLight}>{x.text}</ListPara>
-              </Card>
-            </li>
-          )
-
+          const getItems = x => {
+            const {activeStatus} = this.state
+            const Cardbg1 = activeStatus === x.id ? '#f1f5f9' : ''
+            const Cardbg2 = activeStatus === x.id ? '#424242' : ''
+            const Cardbg = siteTheme === 'Light' ? Cardbg1 : Cardbg2
+            const fontWeight = activeStatus === x.id ? 'bold' : ''
+            console.log(Cardbg)
+            return (
+              <li>
+                <Card onClick={() => this.getStatus(x.id)} Cardbg={Cardbg}>
+                  <ListItem isLight={isLight}>{x.image}</ListItem>
+                  <ListPara isLight={isLight} fontWeight={fontWeight}>
+                    {x.text}
+                  </ListPara>
+                </Card>
+              </li>
+            )
+          }
           return (
             <HeaderContainer isLight={isLight}>
               <ListContainer>{navitems.map(x => getItems(x))}</ListContainer>

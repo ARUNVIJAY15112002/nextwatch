@@ -1,5 +1,7 @@
 import {Component} from 'react'
-import {IoIosClose} from 'react-icons/io'
+import {IoIosClose, IoIosSearch} from 'react-icons/io'
+import Loader from 'react-loader-spinner'
+
 import Cookies from 'js-cookie'
 import Header from '../Header'
 import SideHeader from '../SideHeader'
@@ -12,20 +14,43 @@ import {
   PrImage,
   Prbtn,
   PremiumClosebtn,
+  Input,
+  Icon,
+  InputContainer,
+  Loadercontainer,
+  IMAGEFAILURE,
+  FailureCard,
+  FAILUREHEAD,
+  FAILUREPARA,
+  RButton,
 } from './StyledComponents'
 import FileContext from '../../context/FileContext'
 import HomeCards from '../HomeCards'
 
+const apiStatusConstants = {
+  success: 'SUCCESS',
+  failure: 'FAILURE',
+  intial: 'intial',
+  loading: 'LOADING',
+}
+
 class Home extends Component {
-  state = {videosList: [], showPremiumCard: true}
+  state = {
+    videosList: [],
+    showPremiumCard: true,
+    setSearch: '',
+    apiStatus: apiStatusConstants.intial,
+  }
 
   componentDidMount() {
     this.getVideos()
   }
 
   getVideos = async () => {
+    this.setState({apiStatus: apiStatusConstants.loading})
+    const {setSearch} = this.state
     const jwtToken = Cookies.get('jwt_token')
-    const apiUrl = 'https://apis.ccbp.in/videos/all?search='
+    const apiUrl = `https://apis.ccbp.in/videos/all?search=${setSearch}`
     const options = {
       headers: {
         Authorization: `Bearer ${jwtToken}`,
@@ -34,6 +59,7 @@ class Home extends Component {
     }
     const response = await fetch(apiUrl, options)
     if (response.ok) {
+      this.setState({apiStatus: apiStatusConstants.success})
       const fetchedData = await response.json()
       const formatedData = fetchedData.videos.map(x => ({
         id: x.id,
@@ -48,7 +74,7 @@ class Home extends Component {
       }))
       this.setState({videosList: formatedData})
     } else {
-      console.log(0)
+      this.setState({apiStatus: apiStatusConstants.failure})
     }
   }
 
@@ -70,6 +96,10 @@ class Home extends Component {
     </PremiumCard>
   )
 
+  FilterInputs = e => {
+    this.setState({setSearch: e.target.value}, this.getVideos)
+  }
+
   renderHome = () => (
     <FileContext.Consumer>
       {value => {
@@ -83,6 +113,17 @@ class Home extends Component {
               <SideHeader />
               <Card>
                 {showPremiumCard === true && this.renderPremiumCard()}
+                <InputContainer>
+                  {' '}
+                  <Input
+                    type="search"
+                    onChange={this.FilterInputs}
+                    placeholder="Search"
+                  />
+                  <Icon>
+                    <IoIosSearch />
+                  </Icon>
+                </InputContainer>
 
                 <ListContainer>
                   {videosList.map(x => (
@@ -97,8 +138,107 @@ class Home extends Component {
     </FileContext.Consumer>
   )
 
+  renderLoader = () => (
+    <FileContext.Consumer>
+      {value => {
+        const {siteTheme} = value
+        const {videosList, showPremiumCard} = this.state
+        const isLight = siteTheme === 'Light' ? 'true' : 'false'
+        return (
+          <>
+            <Header />
+            <BgContainer isLight={isLight}>
+              <SideHeader />
+              <Card>
+                {showPremiumCard === true && this.renderPremiumCard()}
+                <InputContainer>
+                  {' '}
+                  <Input
+                    type="search"
+                    onChange={this.FilterInputs}
+                    placeholder="Search"
+                  />
+                  <Icon>
+                    <IoIosSearch />
+                  </Icon>
+                </InputContainer>
+                <Loadercontainer data-testid="loader" isLight={isLight}>
+                  <Loader
+                    type="ThreeDots"
+                    color="back"
+                    height="50"
+                    width="50"
+                  />
+                </Loadercontainer>
+              </Card>
+            </BgContainer>
+          </>
+        )
+      }}
+    </FileContext.Consumer>
+  )
+
+  renderFailure = () => (
+    <FileContext.Consumer>
+      {value => {
+        const {siteTheme} = value
+        const {videosList, showPremiumCard} = this.state
+        const isLight = siteTheme === 'Light' ? 'true' : 'false'
+        const imgUrl =
+          siteTheme === 'true'
+            ? 'https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-light-theme-img.png'
+            : 'https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-dark-theme-img.png'
+        return (
+          <>
+            <Header />
+            <BgContainer isLight={isLight}>
+              <SideHeader />
+              <Card>
+                {showPremiumCard === true && this.renderPremiumCard()}
+                <InputContainer>
+                  {' '}
+                  <Input
+                    type="search"
+                    onChange={this.FilterInputs}
+                    placeholder="Search"
+                  />
+                  <Icon>
+                    <IoIosSearch />
+                  </Icon>
+                </InputContainer>
+                <FailureCard>
+                  <IMAGEFAILURE src={imgUrl} />
+                  <FAILUREHEAD isLight={isLight}>
+                    Oops! Something Went Wrong{' '}
+                  </FAILUREHEAD>
+                  <FAILUREPARA isLight={isLight}>
+                    We are having some trouble to complete your request. Please
+                    try again.
+                  </FAILUREPARA>
+                  <RButton onClick={this.getVideos}>Retry</RButton>
+                </FailureCard>
+              </Card>
+            </BgContainer>
+          </>
+        )
+      }}
+    </FileContext.Consumer>
+  )
+
   render() {
-    return this.renderHome()
+    const {apiStatus} = this.state
+    console.log(apiStatus)
+    switch (apiStatus) {
+      case apiStatusConstants.success:
+        return this.renderHome()
+      case apiStatusConstants.loading:
+        return this.renderLoader()
+      case apiStatusConstants.failure:
+        return this.renderFailure()
+
+      default:
+        return null
+    }
   }
 }
 

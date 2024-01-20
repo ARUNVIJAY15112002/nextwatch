@@ -19,7 +19,7 @@ export const HeaderButton = styled.nav`
 
 export const HeaderContainer = styled.div`
   width: 19vw;
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -63,7 +63,8 @@ export const ContactUsHead = styled.h1`
 export const ListPara = styled.p`
   color: ${props => (props.isLight === 'true' ? '#475569' : '#d7dfe9')};
   font-size: 14px;
-  margin-top: 1px;
+  margin-top: 7px;
+  font-weight: ${props => props.fontWeight};
 `
 export const FootPara = styled.p`
   color: ${props => (props.isLight === 'true' ? '#475569' : '#d7dfe9')};
@@ -73,16 +74,20 @@ export const FootPara = styled.p`
   margin-left: 14px;
 `
 
-export const Card = styled.button`
-  font-size: 18px;
+export const Card = styled.div`
   display: flex;
+  font-size: 18px;
+  display: column;
+  align-items: center;
   flex-direction: row;
   list-style: none;
   margin-bottom: 7px;
-  background-color: transparent;
+  background-color: ${props => props.Cardbg};
   border-width: 0px;
   cursor: pointer;
+  width: 200px;
   margin-left: 13px;
+  padding: 5px;
 `
 
 export const ListItem = styled.div`

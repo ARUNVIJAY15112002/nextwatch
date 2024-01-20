@@ -6,7 +6,6 @@ import Gaming from './components/Gaming'
 import './App.css'
 import Login from './components/Login'
 
-// Replace your code here
 class App extends Component {
   state = {siteTheme: 'Light', ChangeTheme: true}
 
