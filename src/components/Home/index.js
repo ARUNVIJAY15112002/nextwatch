@@ -152,6 +152,7 @@ class Home extends Component {
         const {siteTheme, showPremiumCard} = value
         const {videosList} = this.state
         const isLight = siteTheme === 'Light' ? 'true' : 'false'
+        const LoaderColor = siteTheme === 'Light' ? 'black' : 'white'
         return (
           <>
             <Header />
@@ -173,7 +174,7 @@ class Home extends Component {
                 <Loadercontainer data-testid="loader" isLight={isLight}>
                   <Loader
                     type="ThreeDots"
-                    color="back"
+                    color={LoaderColor}
                     height="50"
                     width="50"
                   />
@@ -235,7 +236,6 @@ class Home extends Component {
 
   render() {
     const {apiStatus} = this.state
-    console.log(apiStatus)
     switch (apiStatus) {
       case apiStatusConstants.success:
         return this.renderHome()

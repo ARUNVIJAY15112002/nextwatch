@@ -53,8 +53,6 @@ class App extends Component {
           <Route exact path="/" component={Home} />
           <Route exact path="/gaming" component={Gaming} />
         </Switch>
-
-        <Home />
       </FileContext.Provider>
     )
   }

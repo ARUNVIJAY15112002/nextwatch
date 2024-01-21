@@ -105,18 +105,15 @@ export const Icon = styled.div`
   color: #475569;
 `
 
-export const Loadercontainer = styled.div`
-  margin-top: 140px;
-  align-self: center;
-  margin-left: 160px;
-
-  color: ${props => (props.isLight === 'true' ? 'black' : '#ffffff')};
-`
-
 export const IMAGEFAILURE = styled.img`
-  width: 270px;
-  height: 270px;
+  width: 180px;
+  height: 180px;
   margin-left: -40px;
+  @media screen and (min-width: 768px) {
+    width: 270px;
+    height: 270px;
+    margin-left: -40px;
+  }
 `
 export const FailureCard = styled.div`
   display: flex;
@@ -126,15 +123,25 @@ export const FailureCard = styled.div`
   justify-content: center;
   align-items: center;
   margin-top: 25px;
+  background-color: pink;
+  width: 80%;
+  margin-left: 0px;
+  padding: 10px;
 `
 
 export const FAILUREHEAD = styled.h1`
   color: ${props => (props.isLight === 'true' ? 'black' : '#d7dfe9')};
-  font-size: 25px;
+  font-size: 15px;
+  @media screen and (min-width: 768px) {
+    font-size: 20px;
+  }
 `
-export const FAILUREPARA = styled.h1`
+export const FAILUREPARA = styled.p`
   color: ${props => (props.isLight === 'true' ? 'black' : '#d7dfe9')};
-  font-size: 20px;
+  font-size: 12px;
+  @media screen and (min-width: 768px) {
+    font-size: 20px;
+  }
 `
 export const RButton = styled.button`
   color: white;
@@ -144,4 +151,14 @@ export const RButton = styled.button`
   width: 80px;
   height: 34px;
   border: 0px;
+`
+
+export const Loadercontainer = styled.div`
+  color: ${props => (props.isLight === 'true' ? 'black' : '#ffffff')};
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 60%;
+  width: 80vw;
 `
