@@ -8,13 +8,21 @@ export const BgContainer = styled.div`
   background-color: ${props =>
     props.isLight === 'true' ? '#f8fafc' : '#000000'};
 `
-export const ListContainer = styled.div`
+export const ListContainer = styled.ul`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   list-style: none;
   width: 80vw;
   margin-left: 15px;
+  @media screen and (max-width: 575px) {
+    width: 100vw;
+    margin-left: -25px;
+  }
+  @media (min-width: 576px) and (max-width: 768px) {
+    width: 100vw;
+    margin-left: 25px;
+  }
 `
 export const Card = styled.div`
   display: flex;
@@ -27,6 +35,12 @@ export const CardGaming = styled.div`
   background-color: ${props =>
     props.isLight === 'true' ? '#ebebeb' : ' #0f0f0f'};
   margin-bottom: 30px;
+  @media screen and (max-width: 575px) {
+    width: 100vw;
+  }
+  @media (min-width: 576px) and (max-width: 768px) {
+    width: 100vw;
+  }
 `
 export const Logo = styled.div`
   color: red;

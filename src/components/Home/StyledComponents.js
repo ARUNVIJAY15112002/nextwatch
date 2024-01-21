@@ -19,7 +19,10 @@ export const ListContainer = styled.ul`
   flex-direction: row;
   width: 80vw;
   @media screen and (max-width: 575px) {
-    width: 100%;
+    width: 100vw;
+  }
+  @media (min-width: 576px) and (max-width: 768px) {
+    width: 100vw;
   }
 `
 export const Card = styled.div`
@@ -34,7 +37,11 @@ export const PremiumCard = styled.div`
   justify-content: space-between;
   background-size: cover;
   height: 200px;
-  width: 82vw;
+  width: 100vw;
+
+  @media screen and (min-width: 768px) {
+    width: 82vw;
+  }
 `
 export const PremiumCardItems = styled.div`
   display: flex;
@@ -69,14 +76,20 @@ export const Input = styled.input`
   background-color: transparent;
 `
 export const InputContainer = styled.div`
-  width: 380px;
   height: 30px;
   border: 1px solid #475569;
   display: flex;
   flex-direction: row;
-  margin-left: 50px;
+  margin-bottom: 20px;
+  margin-right: 20px;
+  margin-left: 15px;
+  width: 70%;
   margin-top: 10px;
   color: white;
+  @media screen and (min-width: 768px) {
+    margin-left: 50px;
+    width: 380px;
+  }
 `
 
 export const Icon = styled.div`

@@ -6,12 +6,30 @@ export const ListItem = styled.li`
   margin: 8px;
   width: 200px;
   height: 350px;
+  @media screen and (max-width: 575px) {
+    width: 42%;
+    background-color: red;
+    margin-left: 20px;
+    height: 300px;
+  }
+  @media (min-width: 576px) and (max-width: 768px) {
+    width: 40%;
+    margin-left: 0px;
+    background-color: red;
+    height: 300px;
+  }
 `
 
 export const Image = styled.img`
   width: 200px;
   height: 250px;
   border-radius: 6px;
+  @media screen and (max-width: 575px) {
+    width: 100%;
+  }
+  @media (min-width: 576px) and (max-width: 768px) {
+    width: 100%;
+  }
 `
 
 export const Title = styled.p`

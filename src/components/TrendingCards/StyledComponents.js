@@ -38,6 +38,14 @@ export const ProfileImage = styled.img`
 export const Image = styled.img`
   width: 400px;
   height: 220px;
+  @media screen and (max-width: 575px) {
+    width: 100vw;
+    height: 230px;
+  }
+  @media (min-width: 576px) and (max-width: 768px) {
+    width: 80%;
+    height: 150px;
+  }
 `
 export const Card = styled.li`
   display: flex;
@@ -47,6 +55,16 @@ export const Card = styled.li`
   width: 300px;
   height: 290px;
   width: 90%;
+  @media screen and (max-width: 575px) {
+    width: 100vw;
+    flex-direction: column;
+    margin-bottom: 40px;
+    height: 330px;
+  }
+  @media (min-width: 576px) and (max-width: 768px) {
+    width: 90%;
+    margin-left: 10px;
+  }
 `
 
 export const Views = styled.p`

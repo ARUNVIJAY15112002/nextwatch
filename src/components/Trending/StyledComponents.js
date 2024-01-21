@@ -15,6 +15,13 @@ export const ListContainer = styled.ul`
   display:flex:
   flex-direction:column;
   width:80vw;
+  @media screen and (max-width: 575px) {
+    width: 100vw;
+    margin-left:-47px;
+  }
+  @media (min-width: 576px) and (max-width: 768px) {
+    width: 100vw;
+  }
 `
 export const CardGaming = styled.div`
   display: flex;
@@ -22,6 +29,12 @@ export const CardGaming = styled.div`
   background-color: ${props =>
     props.isLight === 'true' ? '#ebebeb' : ' #0f0f0f'};
   margin-bottom: 30px;
+  @media screen and (max-width: 575px) {
+    width: 100vw;
+  }
+  @media (min-width: 576px) and (max-width: 768px) {
+    width: 100vw;
+  }
 `
 export const Logo = styled.div`
   color: red;

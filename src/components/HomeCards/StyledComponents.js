@@ -33,8 +33,10 @@ export const DateContainer = styled.div`
 export const DetailContainer = styled.div`
   display: flex;
   flex-direction: column;
+ 
   @media screen and (max-width: 575px) {
     flex-direction: row;
+     width:50vw;
   }
   }
 `
@@ -50,7 +52,11 @@ export const Image = styled.img`
   height: 200px;
   @media screen and (max-width: 575px) {
     width: 100%;
-    height: 190px;
+    height: 220px;
+  }
+  @media screen and (min-width: 576px) and (max-width: 768px) {
+    width: 230px;
+    height: 140px;
   }
 `
 export const Card = styled.li`
@@ -60,12 +66,20 @@ export const Card = styled.li`
   margin: 7px;
   width: 300px;
   height: 290px;
-  @media screen and (max-width: 575px) {
+  @media screen and (max-width: 565px) {
+    margin: 0px;
+
+    width: 100vw;
+    margin-left: -40px;
+    margin-top: 15px;
+  }
+  @media (min-width: 576px) and (max-width: 768px) {
     margin: 0px;
     margin-bottom: -20px;
-    width: 115%;
-    margin-left: -40px;
-    margin-top: 5px;
+    width: 50%;
+    margin-top: 19px;
+    width: 230px;
+    margin-left: 15px;
   }
 `
 

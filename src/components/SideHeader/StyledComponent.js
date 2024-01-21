@@ -20,11 +20,14 @@ export const HeaderButton = styled.nav`
 export const HeaderContainer = styled.div`
   width: 19vw;
   min-height: 100vh;
-  display: flex;
+  display: none;
   flex-direction: column;
   justify-content: space-between;
   background-color: ${props =>
     props.isLight === 'true' ? ' #ffffff' : ' #212121'};
+  @media (min-width: 768px) {
+    display: flex;
+  }
 `
 
 export const ListContainer = styled.ul`
