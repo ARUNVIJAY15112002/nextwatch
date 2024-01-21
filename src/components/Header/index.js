@@ -93,7 +93,7 @@ class Header extends Component {
               {showHeader && (
                 <NavContainer isLight={isLight}>
                   <NavUl>
-                    <Link to="/Home" className="link">
+                    <Link to="/" className="link">
                       <MenuItems isLight={isLight}>Home</MenuItems>
                     </Link>
                     <Hr />

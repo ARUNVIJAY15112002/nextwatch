@@ -4,8 +4,10 @@ import FileContext from './context/FileContext'
 import Home from './components/Home'
 import Trending from './components/Trending'
 import Gaming from './components/Gaming'
+import VideoItem from './components/VideoItem'
 import './App.css'
 import Login from './components/Login'
+import Header from './components/Header'
 
 class App extends Component {
   state = {
@@ -47,11 +49,13 @@ class App extends Component {
           closePremiumCard: this.closePremiumCard,
         }}
       >
+        <Header />
         <Switch>
           <Route exact path="/login" component={Login} />
           <Route exact path="/trending" component={Trending} />
           <Route exact path="/" component={Home} />
           <Route exact path="/gaming" component={Gaming} />
+          <Route exact path="/videos/:id" component={VideoItem} />
         </Switch>
       </FileContext.Provider>
     )

@@ -8,14 +8,14 @@ export const ListItem = styled.li`
   height: 350px;
   @media screen and (max-width: 575px) {
     width: 42%;
-    background-color: red;
+
     margin-left: 20px;
     height: 300px;
   }
   @media (min-width: 576px) and (max-width: 768px) {
     width: 40%;
     margin-left: 0px;
-    background-color: red;
+
     height: 300px;
   }
 `

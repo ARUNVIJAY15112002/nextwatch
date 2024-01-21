@@ -1,5 +1,7 @@
 import {formatDistanceToNow} from 'date-fns'
+import {Link} from 'react-router-dom'
 import FileContext from '../../context/FileContext'
+
 import {
   VideoTitle,
   ViewsContainer,
@@ -27,22 +29,24 @@ const HomeCards = props => {
         const isLight = siteTheme === 'Light' ? 'true' : 'false'
 
         return (
-          <Card>
-            <Image src={thumbnailUrl} />
-            <DetailsContainer>
-              <ProfileImage src={profileImageUrl} />
-              <ViewsContainer>
-                <VideoTitle isLight={isLight}>{title}</VideoTitle>
-                <DetailContainer>
-                  <Type isLight={isLight}>{name}</Type>
-                  <DateContainer>
-                    <Views isLight={isLight}>{viewCount}</Views>
-                    <Date1 isLight={isLight}>{date}</Date1>
-                  </DateContainer>
-                </DetailContainer>
-              </ViewsContainer>
-            </DetailsContainer>
-          </Card>
+          <Link to={`/videos/${id}`}>
+            <Card>
+              <Image src={thumbnailUrl} />
+              <DetailsContainer>
+                <ProfileImage src={profileImageUrl} />
+                <ViewsContainer>
+                  <VideoTitle isLight={isLight}>{title}</VideoTitle>
+                  <DetailContainer>
+                    <Type isLight={isLight}>{name}</Type>
+                    <DateContainer>
+                      <Views isLight={isLight}>{viewCount}</Views>
+                      <Date1 isLight={isLight}>{date}</Date1>
+                    </DateContainer>
+                  </DetailContainer>
+                </ViewsContainer>
+              </DetailsContainer>
+            </Card>
+          </Link>
         )
       }}
     </FileContext.Consumer>
